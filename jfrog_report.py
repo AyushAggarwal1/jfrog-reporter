@@ -223,11 +223,11 @@ def main() -> None:
     output_dir = pathlib.Path("report_output")
 
     report_types = [
-        "violations",
-        "vulnerabilities",
-        "exposures",
-        "licenses",
-        "operationalRisks",
+        "violations",               # violations are policy violations it can be custom policies or built-in policies
+        "vulnerabilities",          # vulnerabilities
+        "exposures",                # exposures can be - iac, applications, secrets etc.
+        "licenses",                 # sbom
+        "operationalRisks",      
     ]
     exposure_categories = exposure_categories_for_repo(base_url, api_key, repo)
     if not exposure_categories:
