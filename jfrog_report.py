@@ -97,10 +97,10 @@ def create_report(
     base_url: str, api_key: str, repo: str, report_type: str, category: Optional[str]
 ) -> int:
     endpoint_map = {
-        "violations": "/xray/api/v1/reports/violations",
-        "vulnerabilities": "/xray/api/v1/reports/vulnerabilities",
-        "exposures": "/xray/api/v1/reports/exposures",
-        "licenses": "/xray/api/v1/reports/licenses",
+        "violations": "/xray/api/v1/reports/violations",                        # violations are policy violations
+        "vulnerabilities": "/xray/api/v1/reports/vulnerabilities",              
+        "exposures": "/xray/api/v1/reports/exposures",                          # exposures can be - iac, applications, secrets etc.
+        "licenses": "/xray/api/v1/reports/licenses",                            # this is sbom
         "operationalRisks": "/xray/api/v1/reports/operationalRisks",
     }
     endpoint = endpoint_map[report_type]
