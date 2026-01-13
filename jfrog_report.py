@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import datetime as _dt
 import json
+import logging
 import os
 import pathlib
 import time
@@ -33,6 +34,18 @@ def _env(name: str) -> str:
     if not val:
         raise ConfigError(f"Missing required env var: {name}")
     return val
+
+
+logger = logging.getLogger(__name__)
+
+
+def _configure_logging() -> None:
+    level_name = os.getenv("LOG_LEVEL", "INFO").upper()
+    level = getattr(logging, level_name, logging.INFO)
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s %(levelname)s %(name)s - %(message)s",
+    )
 
 
 def _headers(api_key: str) -> Dict[str, str]:
@@ -135,7 +148,7 @@ def wait_for_completion(
     while time.time() < deadline:
         status = get_report_status(base_url, api_key, report_id)
         state = status.get("status", "").lower()
-        print(f"Report {report_id} status: {state}")
+        logger.info("<----Report %s status: %s---->", report_id, state)
         if state in {"completed", "failed", "cancelled"}:
             return status
         time.sleep(poll_interval)
@@ -168,11 +181,12 @@ def export_report(
             zf.extractall(output_dir)
             extracted = [output_dir / name for name in zf.namelist()]
     except zipfile.BadZipFile:
-        print(f"Warning: Export for report {report_id} is not a ZIP; kept raw at {zip_path}")
+        logger.warning("Export for report %s is not a ZIP; kept raw at %s---->", report_id, zip_path)
     return zip_path, extracted
 
 
 def main() -> None:
+    _configure_logging()
     base_url = _env("JFROG_URL").rstrip("/")
     api_key = _env("JFROG_API_KEY")
     repo = _env("JFROG_REPO")
@@ -187,7 +201,7 @@ def main() -> None:
     ]
     exposure_categories = exposure_categories_for_repo(base_url, api_key, repo)
     if not exposure_categories:
-        print("No exposure categories found for repo; exposures reports will be skipped.")
+        logger.info("No exposure categories found for repo; exposures reports will be skipped.")
 
     for report_type in report_types:
         categories_to_run = [None]
@@ -201,25 +215,29 @@ def main() -> None:
                 report_id = create_report(base_url, api_key, repo, report_type, category=category)
             except Exception as exc:  # requests.HTTPError or config errors
                 cat_suffix = f" ({category})" if category else ""
-                print(f"Failed to create {report_type}{cat_suffix} report: {exc}")
+                logger.error("Failed to create %s%s report: %s", report_type, cat_suffix, exc)
                 continue
 
             cat_suffix = f" ({category})" if category else ""
-            print(f"{_display_name(report_type)} report{cat_suffix} created: id={report_id}")
+            logger.info("%s report%s created: id=%s", _display_name(report_type), cat_suffix, report_id)
 
             try:
                 status = wait_for_completion(
                     base_url, api_key, report_id, poll_interval=5, timeout=300
                 )
             except TimeoutError as exc:
-                print(str(exc))
+                logger.error(str(exc))
                 continue
             except requests.HTTPError as exc:
-                print(f"Status check failed for report {report_id}: {exc}")
+                logger.error("Status check failed for report %s: %s", report_id, exc)
                 continue
 
             if status.get("status", "").lower() != "completed":
-                print(f"Report {report_id} finished with status {status.get('status')}; not exporting.")
+                logger.warning(
+                    "Report %s finished with status %s; not exporting.",
+                    report_id,
+                    status.get("status"),
+                )
                 continue
 
             file_name = f"AccuKnoxReport_{report_type}"
@@ -237,14 +255,14 @@ def main() -> None:
                     output_dir=output_dir,
                 )
             except requests.HTTPError as exc:
-                print(f"Export failed for report {report_id}: {exc}")
+                logger.error("Export failed for report %s: %s", report_id, exc)
                 continue
 
-            print(f"Saved export ZIP to {zip_path}")
+            logger.info("Saved export ZIP to %s", zip_path)
             if extracted:
-                print("Extracted files:")
+                logger.info("Extracted files:")
                 for path in extracted:
-                    print(f"  {path}")
+                    logger.info("  %s", path)
 
 
 if __name__ == "__main__":
