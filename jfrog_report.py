@@ -81,8 +81,16 @@ def _report_payload(repo: str, report_type: str, category: Optional[str]) -> Dic
     return payload
 
 
-def fetch_repos(base_url: str, api_key: str) -> List[Dict]:
-    resp = requests.get(f"{base_url}/xray/api/v1/repos", headers=_headers(api_key), timeout=30)
+def fetch_repos(base_url: str, api_key: str, repo: str) -> List[Dict]:
+    """
+    Fetch artifacts for a repo so we can inspect exposure categories.
+    """
+    resp = requests.get(
+        f"{base_url}/xray/api/v1/artifacts",
+        params={"repo": repo},
+        headers=_headers(api_key),
+        timeout=60,
+    )
     resp.raise_for_status()
     payload = resp.json()
     return payload.get("data", [])
@@ -91,19 +99,31 @@ def fetch_repos(base_url: str, api_key: str) -> List[Dict]:
 def exposure_categories_for_repo(base_url: str, api_key: str, repo: str) -> List[str]:
     """
     Extract exposure categories enabled for the given repo.
-    Expects structure under configuration.scan.exposures.categories.
+    Expects structure under data[].exposures_issues.categories or
+    scans_status.details.exposures.categories.
     """
-    repos = fetch_repos(base_url, api_key)
-    repo_entry = next((r for r in repos if r.get("repo") == repo), None)
-    if not repo_entry:
+    artifacts = fetch_repos(base_url, api_key, repo)
+    if not artifacts:
         return []
-    categories = (
-        repo_entry.get("configuration", {})
-        .get("scan", {})
-        .get("exposures", {})
-        .get("categories", {})
-    )
-    return [name for name, enabled in categories.items() if enabled]
+
+    categories: set[str] = set()
+    for artifact in artifacts:
+        cat_from_issues = (
+            artifact.get("exposures_issues", {})
+            .get("categories", {})
+        )
+        if cat_from_issues:
+            categories.update(cat_from_issues.keys())
+            continue
+
+        cat_from_status = (
+            artifact.get("scans_status", {})
+            .get("details", {})
+            .get("exposures", {})
+            .get("categories", {})
+        )
+        categories.update(cat_from_status.keys())
+    return sorted(categories)
 
 
 def create_report(
@@ -134,6 +154,16 @@ def get_report_status(base_url: str, api_key: str, report_id: int) -> Dict:
     )
     resp.raise_for_status()
     return resp.json()
+
+
+def delete_report(base_url: str, api_key: str, report_id: int) -> None:
+    resp = requests.delete(
+        f"{base_url}/xray/api/v1/reports/{report_id}", headers=_headers(api_key), timeout=30
+    )
+    if resp.status_code == 404:
+        logger.warning("Report %s already deleted or missing during cleanup", report_id)
+        return
+    resp.raise_for_status()
 
 
 def wait_for_completion(
@@ -263,6 +293,12 @@ def main() -> None:
                 logger.info("Extracted files:")
                 for path in extracted:
                     logger.info("  %s", path)
+
+            try:
+                delete_report(base_url, api_key, report_id)
+                logger.info("Deleted report %s from JFrog after export", report_id)
+            except requests.HTTPError as exc:
+                logger.warning("Failed to delete report %s: %s", report_id, exc)
 
 
 if __name__ == "__main__":
