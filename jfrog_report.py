@@ -125,7 +125,7 @@ def exposure_categories_for_repo(base_url: str, api_key: str, repo: str) -> List
         categories.update(cat_from_status.keys())
     return sorted(categories)
 
-
+# @ayushaggarwal1 check-1 -> based on req this can be modified
 def create_report(
     base_url: str, api_key: str, repo: str, report_type: str, category: Optional[str]
 ) -> int:
