@@ -14,7 +14,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: jfrog-reporter
-              image: ayush1136/jfrog-reporter:v1.2
+              image: ayush1136/jfrog-reporter:v1.5
               imagePullPolicy: IfNotPresent
               envFrom:
                 - secretRef:
