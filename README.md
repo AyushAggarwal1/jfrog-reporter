@@ -26,11 +26,28 @@
     - Endpoint - "/xray/api/v1/reports/operationalRisks",   
 
 ## Run locally
+- By Defult SARIF and SEND-TO-ACCUKNOX is Enabled
+
 ```bash
 pip install -r requirements.txt
-export JFROG_URL=... JFROG_API_KEY=... JFROG_REPO=...
+export JFROG_URL=... JFROG_API_KEY=... JFROG_REPO=... CSPM_BASE_URL=... LABEL=... ARTIFACT_TOKEN=...
 python jfrog_report.py
 ```
+
+- Generate Output in SARIF - 
+```bash
+python3 jfrog_report.py --convert-to-sarif true
+
+python3 jfrog_report.py --convert-to-sarif false
+```
+
+- Send Artifact to AccuKnox Control Plane
+```bash
+python3 jfrog_report.py --convert-to-sarif true --send-to-accuknox true
+
+python3 jfrog_report.py --convert-to-sarif false --send-to-accuknox false
+```
+
 Outputs are written to `report_output/` as ZIP plus extracted JSON files.
 
 ## Notes

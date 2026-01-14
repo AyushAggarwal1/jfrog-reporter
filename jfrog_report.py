@@ -13,16 +13,19 @@ poll their status, and download the exported ZIP (then extract the JSON).
 
 from __future__ import annotations
 
+import argparse
 import datetime as _dt
 import json
 import logging
 import os
 import pathlib
+import subprocess
 import time
 import zipfile
 from typing import Dict, List, Optional, Tuple
 
 import requests
+from sarif_converter import convert_file
 
 
 class ConfigError(Exception):
@@ -58,6 +61,18 @@ def _headers(api_key: str) -> Dict[str, str]:
 
 def _timestamp() -> str:
     return _dt.datetime.now(_dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+
+
+def _str_to_bool(val: str) -> bool:
+    """
+    argparse helper to accept true/false values for a flag.
+    """
+    lowered = val.lower()
+    if lowered in {"true", "1", "yes", "y"}:
+        return True
+    if lowered in {"false", "0", "no", "n"}:
+        return False
+    raise argparse.ArgumentTypeError("Expected one of: true, false")
 
 
 def _display_name(report_type: str) -> str:
@@ -215,19 +230,51 @@ def export_report(
     return zip_path, extracted
 
 
-def main() -> None:
+def _send_sarif_to_accuknox(sarif_dir: pathlib.Path) -> None:
+    """
+    Invoke send-to-accuknox.py to upload SARIF files.
+    """
+    script_path = pathlib.Path(__file__).parent / "send-to-accuknox.py"
+    if not script_path.exists():
+        logger.warning("AccuKnox uploader script not found at %s; skipping upload.", script_path)
+        return
+
+    cmd = ["python3", str(script_path), "--sarif-dir", str(sarif_dir)]
+    logger.info("Sending SARIF files to AccuKnox using %s", script_path.name)
+    try:
+        result = subprocess.run(
+            cmd,
+            check=True,
+            capture_output=True,
+            text=True,
+            env=os.environ.copy(),
+        )
+        if result.stdout:
+            logger.info(result.stdout.strip())
+        if result.stderr:
+            logger.warning(result.stderr.strip())
+    except subprocess.CalledProcessError as exc:
+        output = exc.stderr or exc.stdout or str(exc)
+        logger.error("AccuKnox upload failed: %s", output.strip())
+
+
+def main(convert_to_sarif: bool = False, send_to_accuknox: bool = True) -> None:
     _configure_logging()
     base_url = _env("JFROG_URL").rstrip("/")
     api_key = _env("JFROG_API_KEY")
     repo = _env("JFROG_REPO")
     output_dir = pathlib.Path("report_output")
+    sarif_dir: Optional[pathlib.Path] = None
+    if convert_to_sarif:
+        sarif_dir = pathlib.Path("sarif_files")
+        sarif_dir.mkdir(parents=True, exist_ok=True)
 
     report_types = [
-        "violations",               # violations are policy violations it can be custom policies or built-in policies
+        # "violations",               # violations are policy violations it can be custom policies or built-in policies
         "vulnerabilities",          # vulnerabilities
         "exposures",                # exposures can be - iac, applications, secrets etc.
-        "licenses",                 # sbom
-        "operationalRisks",      
+        # "licenses",                 # sbom
+        # "operationalRisks",         # sca - software component analysis
     ]
     exposure_categories = exposure_categories_for_repo(base_url, api_key, repo)
     if not exposure_categories:
@@ -294,15 +341,47 @@ def main() -> None:
                 for path in extracted:
                     logger.info("  %s", path)
 
+            if convert_to_sarif and sarif_dir:
+                # Convert extracted JSON reports to SARIF and store under sarif_files.
+                for path in extracted:
+                    if path.suffix.lower() != ".json":
+                        continue
+
+                    sarif_target = sarif_dir / f"{path.stem}.sarif.json"
+                    try:
+                        convert_file(
+                            input_path=path,
+                            category=category if report_type == "exposures" else None,
+                            output_path=sarif_target,
+                        )
+                        logger.info("Converted %s to SARIF at %s", path.name, sarif_target)
+                    except Exception as exc:
+                        logger.error("Failed to convert %s to SARIF: %s", path.name, exc)
+
             try:
                 delete_report(base_url, api_key, report_id)
                 logger.info("Deleted report %s from JFrog after export", report_id)
             except requests.HTTPError as exc:
                 logger.warning("Failed to delete report %s: %s", report_id, exc)
 
+    if convert_to_sarif and send_to_accuknox and sarif_dir:
+        _send_sarif_to_accuknox(sarif_dir)
+
 
 if __name__ == "__main__":
-    try:
-        main()
-    except ConfigError as err:
-        raise SystemExit(f"Config error: {err}")
+    parser = argparse.ArgumentParser(description="Run JFrog Xray reports.")
+    parser.add_argument(
+        "--convert-to-sarif",
+        type=_str_to_bool,
+        default=True,
+        help="Convert downloaded JSON reports to SARIF files (true|false).",
+    )
+    parser.add_argument(
+        "--send-to-accuknox",
+        type=_str_to_bool,
+        default=True,
+        help="After SARIF conversion, upload files via send-to-accuknox.py (true|false).",
+    )
+    args = parser.parse_args()
+    main(convert_to_sarif=args.convert_to_sarif, send_to_accuknox=args.send_to_accuknox)
+    
