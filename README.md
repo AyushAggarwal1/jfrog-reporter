@@ -7,6 +7,9 @@
 - `JFROG_URL` – Base URL, e.g. `https://example.jfrog.io`
 - `JFROG_API_KEY` – API key or access token
 - `JFROG_REPO` – Repository on Jfrog, e.g. `docker-local`
+- `CSPM_BASE_URL` - AccuKnox CSPM URL 
+- `LABEL` - AccuKnox Label
+- `ARTIFACT_TOKEN` - AccuKnox Artifact Token
 
 ## Jfrog Endpoint Overview
 - "vulnerabilities": 
