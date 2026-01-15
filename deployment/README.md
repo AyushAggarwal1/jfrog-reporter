@@ -1,3 +1,22 @@
+## Steps to Run via Docker
+1. Create a `env` file, containing
+- JFROG_URL={{Your_Jfrog_URL}} e.g. https://trialcmqekv.jfrog.io
+- JFROG_API_KEY=eyJ....
+- JFROG_REPO={{Your_Jfrog_Repo_Name}} e.g. poc-docker-local
+- CSPM_BASE_URL={{AccuKnox_CSPM_URL}} e.g. https://cspm.accuknox.com
+- LABEL={{LABEL}} e.g. `cicd`
+- ARTIFACT_TOKEN=eyJ..
+
+2. Pull Docker Image
+```bash
+docker pull ayush1136/jfrog-reporter:v1.7
+```
+
+3. Run the Jfrog Reporter
+```bash 
+docker run -it --env-file {{env-file}} ayush1136/jfrog-reporter:v1.7
+```
+
 ## Steps To Deploy Jfrog Reporter in k8s env
 
 1. Create `Secret` 
@@ -17,7 +36,7 @@ kubectl get secret jfrog-reporter-secret
 ```
 
 3. Kubernetes CronJob
-- Deploy [jfrog-cronjob.yaml](jfrog-cronjob.yaml)
+- Deploy [jfrog-cronjob.yaml](k8s/jfrog-cronjob.yaml)
 
 ```bash
 kubectl apply -f jfrog-cronjob.yaml
