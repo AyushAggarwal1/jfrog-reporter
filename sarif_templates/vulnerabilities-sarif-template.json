@@ -5,7 +5,7 @@
         {
             "tool": {
                 "driver": {
-                    "name": "Jforg-{report_type}-{category}",
+                    "name": "Jfrog-{report_type}-{category}",
                     "semanticVersion": "v8.0.0",
                     "informationUri": "https://www.jfrog.com/",
                     "rules": [
