@@ -1,0 +1,1670 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Jfrog-exposures-applications",
+          "semanticVersion": "v8.0.0",
+          "informationUri": "https://github.com/gitleaks/gitleaks",
+          "rules": [
+            {
+              "id": "EXP-1056-302",
+              "name": "EXP-1056-302",
+              "helpUri": "",
+              "help": {
+                "text": "Passwords stored by Node.JS applications are not stored using the Bcrypt module.",
+                "markdown": "Passwords stored by Node.JS applications are not stored using the Bcrypt module."
+              },
+              "fullDescription": {
+                "text": "Passwords stored by Node.JS applications are not stored using the Bcrypt module."
+              },
+              "x-metadata": {
+                "cwe": "CWE-257"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1056-302",
+                "id": "EXP-1056-302",
+                "description": "Passwords stored by Node.JS applications are not stored using the Bcrypt module.",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1059-303",
+              "name": "EXP-1059-303",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "markdown": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-644"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1059-303",
+                "id": "EXP-1059-303",
+                "description": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1059-304",
+              "name": "EXP-1059-304",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "markdown": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-644"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1059-304",
+                "id": "EXP-1059-304",
+                "description": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1059-305",
+              "name": "EXP-1059-305",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "markdown": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-644"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1059-305",
+                "id": "EXP-1059-305",
+                "description": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1059-306",
+              "name": "EXP-1059-306",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "markdown": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-644"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1059-306",
+                "id": "EXP-1059-306",
+                "description": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1059-307",
+              "name": "EXP-1059-307",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "markdown": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-644"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1059-307",
+                "id": "EXP-1059-307",
+                "description": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1059-308",
+              "name": "EXP-1059-308",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "markdown": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-644"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1059-308",
+                "id": "EXP-1059-308",
+                "description": "Node.js application does not use the Helmet package to secure HTTP headers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1061-309",
+              "name": "EXP-1061-309",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "markdown": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "fullDescription": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "x-metadata": {
+                "cwe": "CWE-307"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1061-309",
+                "id": "EXP-1061-309",
+                "description": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1061-310",
+              "name": "EXP-1061-310",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "markdown": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "fullDescription": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "x-metadata": {
+                "cwe": "CWE-307"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1061-310",
+                "id": "EXP-1061-310",
+                "description": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1061-311",
+              "name": "EXP-1061-311",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "markdown": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "fullDescription": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "x-metadata": {
+                "cwe": "CWE-307"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1061-311",
+                "id": "EXP-1061-311",
+                "description": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1061-312",
+              "name": "EXP-1061-312",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "markdown": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "fullDescription": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "x-metadata": {
+                "cwe": "CWE-307"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1061-312",
+                "id": "EXP-1061-312",
+                "description": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1061-313",
+              "name": "EXP-1061-313",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "markdown": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "fullDescription": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "x-metadata": {
+                "cwe": "CWE-307"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1061-313",
+                "id": "EXP-1061-313",
+                "description": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1061-314",
+              "name": "EXP-1061-314",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "markdown": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "fullDescription": {
+                "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+              },
+              "x-metadata": {
+                "cwe": "CWE-307"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1061-314",
+                "id": "EXP-1061-314",
+                "description": "Node.js applications' logins are not throttled to prevent brute-force attacks",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1063-296",
+              "name": "EXP-1063-296",
+              "helpUri": "",
+              "help": {
+                "text": "Python uses insecure cryptographic algorithms",
+                "markdown": "Python uses insecure cryptographic algorithms"
+              },
+              "fullDescription": {
+                "text": "Python uses insecure cryptographic algorithms"
+              },
+              "x-metadata": {
+                "cwe": "CWE-327"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1063-296",
+                "id": "EXP-1063-296",
+                "description": "Python uses insecure cryptographic algorithms",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1063-297",
+              "name": "EXP-1063-297",
+              "helpUri": "",
+              "help": {
+                "text": "Python uses insecure cryptographic algorithms",
+                "markdown": "Python uses insecure cryptographic algorithms"
+              },
+              "fullDescription": {
+                "text": "Python uses insecure cryptographic algorithms"
+              },
+              "x-metadata": {
+                "cwe": "CWE-327"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1063-297",
+                "id": "EXP-1063-297",
+                "description": "Python uses insecure cryptographic algorithms",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1066-295",
+              "name": "EXP-1066-295",
+              "helpUri": "",
+              "help": {
+                "text": "Python applications use weak key or modulus sizes",
+                "markdown": "Python applications use weak key or modulus sizes"
+              },
+              "fullDescription": {
+                "text": "Python applications use weak key or modulus sizes"
+              },
+              "x-metadata": {
+                "cwe": "CWE-326"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1066-295",
+                "id": "EXP-1066-295",
+                "description": "Python applications use weak key or modulus sizes",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1091-301",
+              "name": "EXP-1091-301",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js exec functionaility is invoked with user-provided input",
+                "markdown": "Node.js exec functionaility is invoked with user-provided input"
+              },
+              "fullDescription": {
+                "text": "Node.js exec functionaility is invoked with user-provided input"
+              },
+              "x-metadata": {
+                "cwe": "CWE-77"
+              },
+              "properties": {
+                "security-severity": "medium",
+                "name": "EXP-1091-301",
+                "id": "EXP-1091-301",
+                "description": "Node.js exec functionaility is invoked with user-provided input",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1058-315",
+              "name": "EXP-1058-315",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not enforce TLS on all web communications",
+                "markdown": "Node.js application does not enforce TLS on all web communications"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not enforce TLS on all web communications"
+              },
+              "x-metadata": {
+                "cwe": "CWE-319"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1058-315",
+                "id": "EXP-1058-315",
+                "description": "Node.js application does not enforce TLS on all web communications",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1058-316",
+              "name": "EXP-1058-316",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not enforce TLS on all web communications",
+                "markdown": "Node.js application does not enforce TLS on all web communications"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not enforce TLS on all web communications"
+              },
+              "x-metadata": {
+                "cwe": "CWE-319"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1058-316",
+                "id": "EXP-1058-316",
+                "description": "Node.js application does not enforce TLS on all web communications",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1058-317",
+              "name": "EXP-1058-317",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not enforce TLS on all web communications",
+                "markdown": "Node.js application does not enforce TLS on all web communications"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not enforce TLS on all web communications"
+              },
+              "x-metadata": {
+                "cwe": "CWE-319"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1058-317",
+                "id": "EXP-1058-317",
+                "description": "Node.js application does not enforce TLS on all web communications",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1058-318",
+              "name": "EXP-1058-318",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not enforce TLS on all web communications",
+                "markdown": "Node.js application does not enforce TLS on all web communications"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not enforce TLS on all web communications"
+              },
+              "x-metadata": {
+                "cwe": "CWE-319"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1058-318",
+                "id": "EXP-1058-318",
+                "description": "Node.js application does not enforce TLS on all web communications",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1058-319",
+              "name": "EXP-1058-319",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js application does not enforce TLS on all web communications",
+                "markdown": "Node.js application does not enforce TLS on all web communications"
+              },
+              "fullDescription": {
+                "text": "Node.js application does not enforce TLS on all web communications"
+              },
+              "x-metadata": {
+                "cwe": "CWE-319"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1058-319",
+                "id": "EXP-1058-319",
+                "description": "Node.js application does not enforce TLS on all web communications",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1064-298",
+              "name": "EXP-1064-298",
+              "helpUri": "",
+              "help": {
+                "text": "Python applications do not verify TLS certificates on all servers",
+                "markdown": "Python applications do not verify TLS certificates on all servers"
+              },
+              "fullDescription": {
+                "text": "Python applications do not verify TLS certificates on all servers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-295"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1064-298",
+                "id": "EXP-1064-298",
+                "description": "Python applications do not verify TLS certificates on all servers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1064-299",
+              "name": "EXP-1064-299",
+              "helpUri": "",
+              "help": {
+                "text": "Python applications do not verify TLS certificates on all servers",
+                "markdown": "Python applications do not verify TLS certificates on all servers"
+              },
+              "fullDescription": {
+                "text": "Python applications do not verify TLS certificates on all servers"
+              },
+              "x-metadata": {
+                "cwe": "CWE-295"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1064-299",
+                "id": "EXP-1064-299",
+                "description": "Python applications do not verify TLS certificates on all servers",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1065-300",
+              "name": "EXP-1065-300",
+              "helpUri": "",
+              "help": {
+                "text": "Python applications do not enforce TLS version 1.2 or higher",
+                "markdown": "Python applications do not enforce TLS version 1.2 or higher"
+              },
+              "fullDescription": {
+                "text": "Python applications do not enforce TLS version 1.2 or higher"
+              },
+              "x-metadata": {
+                "cwe": "CWE-757"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1065-300",
+                "id": "EXP-1065-300",
+                "description": "Python applications do not enforce TLS version 1.2 or higher",
+                "tags": [
+                  "applications"
+                ]
+              }
+            },
+            {
+              "id": "EXP-1069-320",
+              "name": "EXP-1069-320",
+              "helpUri": "",
+              "help": {
+                "text": "Node.js applications does not enforce TLS version 1.2 or higher",
+                "markdown": "Node.js applications does not enforce TLS version 1.2 or higher"
+              },
+              "fullDescription": {
+                "text": "Node.js applications does not enforce TLS version 1.2 or higher"
+              },
+              "x-metadata": {
+                "cwe": "CWE-757"
+              },
+              "properties": {
+                "security-severity": "high",
+                "name": "EXP-1069-320",
+                "id": "EXP-1069-320",
+                "description": "Node.js applications does not enforce TLS version 1.2 or higher",
+                "tags": [
+                  "applications"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "EXP-1056-302",
+          "level": "warning",
+          "message": {
+            "text": "Passwords stored by Node.JS applications are not stored using the Bcrypt module."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.hashing.js"
+                },
+                "region": {
+                  "startLine": 4,
+                  "startColumn": 1,
+                  "endLine": 4,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "crypto.createHmac('sha256', secret)"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1059-303",
+          "level": "warning",
+          "message": {
+            "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.helmet.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1059-304",
+          "level": "warning",
+          "message": {
+            "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.throttle.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1059-305",
+          "level": "warning",
+          "message": {
+            "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.tls-version.js"
+                },
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 1,
+                  "endLine": 7,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1059-306",
+          "level": "warning",
+          "message": {
+            "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.tls.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1059-307",
+          "level": "warning",
+          "message": {
+            "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/project-two/main.js"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 1,
+                  "endLine": 47,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1059-308",
+          "level": "warning",
+          "message": {
+            "text": "Node.js application does not use the Helmet package to secure HTTP headers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/project-two/main.js"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 1,
+                  "endLine": 53,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1061-309",
+          "level": "warning",
+          "message": {
+            "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.helmet.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1061-310",
+          "level": "warning",
+          "message": {
+            "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.throttle.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1061-311",
+          "level": "warning",
+          "message": {
+            "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.tls-version.js"
+                },
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 1,
+                  "endLine": 7,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1061-312",
+          "level": "warning",
+          "message": {
+            "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.tls.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1061-313",
+          "level": "warning",
+          "message": {
+            "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/project-two/main.js"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 1,
+                  "endLine": 47,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1061-314",
+          "level": "warning",
+          "message": {
+            "text": "Node.js applications' logins are not throttled to prevent brute-force attacks"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/project-two/main.js"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 1,
+                  "endLine": 53,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1063-296",
+          "level": "warning",
+          "message": {
+            "text": "Python uses insecure cryptographic algorithms"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/app/encrypt_s.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "ARC2.new(b\"secret\", ARC2.MODE_CBC)"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1063-297",
+          "level": "warning",
+          "message": {
+            "text": "Python uses insecure cryptographic algorithms"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.sw.python.crypto.standard.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "ARC2.new(b\"secret\", ARC2.MODE_CBC)"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1066-295",
+          "level": "warning",
+          "message": {
+            "text": "Python applications use weak key or modulus sizes"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.sw.python.crypto.sizes.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "1024"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1091-301",
+          "level": "warning",
+          "message": {
+            "text": "Node.js exec functionaility is invoked with user-provided input"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.exec.js"
+                },
+                "region": {
+                  "startLine": 225,
+                  "startColumn": 1,
+                  "endLine": 225,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "Shell.exec('flash_boot_stack ' + filename, function (err) {\n            log.info(\"Upgrade process exited with code: \", err);\n            if (err !==  0) {\n              // flash_boot_stack return code is not 0. The process is terminated with some error.\n              _dataModel.ErdWrite(_erd.ERD_LCD_HOSTED_FIRMWARE_STATUS, Constants.HOSTED_LCD_FIRMWARE_STATUS.IMAGE_ERROR);\n            }\n          })"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1058-315",
+          "level": "error",
+          "message": {
+            "text": "Node.js application does not enforce TLS on all web communications"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.helmet.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1058-316",
+          "level": "error",
+          "message": {
+            "text": "Node.js application does not enforce TLS on all web communications"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.throttle.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1058-317",
+          "level": "error",
+          "message": {
+            "text": "Node.js application does not enforce TLS on all web communications"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.tls.js"
+                },
+                "region": {
+                  "startLine": 2,
+                  "startColumn": 1,
+                  "endLine": 2,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1058-318",
+          "level": "error",
+          "message": {
+            "text": "Node.js application does not enforce TLS on all web communications"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/project-two/main.js"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 1,
+                  "endLine": 47,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1058-319",
+          "level": "error",
+          "message": {
+            "text": "Node.js application does not enforce TLS on all web communications"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/project-two/main.js"
+                },
+                "region": {
+                  "startLine": 53,
+                  "startColumn": 1,
+                  "endLine": 53,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "express()"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1064-298",
+          "level": "error",
+          "message": {
+            "text": "Python applications do not verify TLS certificates on all servers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/app/cert.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "requests.get(\"https://google.com\", verify=False)"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1064-299",
+          "level": "error",
+          "message": {
+            "text": "Python applications do not verify TLS certificates on all servers"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.sw.python.tls.certificates.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "requests.get(\"https://google.com\", verify=False)"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1065-300",
+          "level": "error",
+          "message": {
+            "text": "Python applications do not enforce TLS version 1.2 or higher"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.sw.python.tls.version.py"
+                },
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 1,
+                  "endLine": 3,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "Context(TLSv1_1_METHOD)"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        },
+        {
+          "ruleId": "EXP-1069-320",
+          "level": "error",
+          "message": {
+            "text": "Node.js applications does not enforce TLS version 1.2 or higher"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/exposures/req.web.node-js.tls-version.js"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 1,
+                  "endLine": 42,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "{\n    key: fs.readFileSync(\"server.key\"),\n    cert: fs.readFileSync(\"server.cert\"),\n    minVersion: tlsVersion\n}"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": ""
+          },
+          "properties": {
+            "tags": [
+              "applications"
+            ],
+            "repository": "poc-docker-local",
+            "impacted_artifact": "docker://jfrog/demo-security:latest"
+          }
+        }
+      ],
+      "invocations": [
+        {
+          "executionSuccessful": true,
+          "notificationConfigurationOverrides": [],
+          "ruleConfigurationOverrides": [],
+          "toolConfigurationNotifications": [],
+          "toolExecutionNotifications": [],
+          "workingDirectory": {
+            "index": -1,
+            "uri": "docker://jfrog/demo-security:latest"
+          }
+        }
+      ]
+    }
+  ]
+}
