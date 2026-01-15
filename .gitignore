@@ -1,4 +1,7 @@
 .env
+.env2
+
+sarif_files/
 report_output/
 # Byte-compiled / optimized / DLL files
 __pycache__/

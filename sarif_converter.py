@@ -202,7 +202,7 @@ def _build_exposures_run(rows: Sequence[Dict], category: str) -> Dict:
     return {
         "tool": {
             "driver": {
-                "name": f"Jforg-exposures-{category}",
+                "name": f"Jfrog-exposures-{category}",
                 "semanticVersion": "v8.0.0",
                 "informationUri": "https://github.com/gitleaks/gitleaks",
                 "rules": rules,
@@ -380,7 +380,7 @@ def _build_vulnerabilities_run(rows: Sequence[Dict], category: str, working_uri:
     return {
         "tool": {
             "driver": {
-                "name": f"Jforg-{category}",
+                "name": f"Jfrog-{category}",
                 "semanticVersion": "v8.0.0",
                 "informationUri": "https://www.jfrog.com/",
                 "rules": rules,
@@ -421,9 +421,202 @@ def _infer_report_type(input_path: Path) -> str:
     name = input_path.name.lower()
     if "vulnerability" in name or "vulnerabilities" in name:
         return "vulnerabilities"
+    if "violation" in name or "violations" in name:
+        return "violations"
     if "exposure" in name or "exposures" in name:
         return "exposures"
     return DEFAULT_REPORT_TYPE
+
+
+def _violation_rule_id(cve: str, issue_id: str) -> str:
+    """
+    Format rule id as '<cve>-Jfrog-<issue_id>'.
+    """
+    cve_part = cve or "UNKNOWN-CVE"
+    issue_part = issue_id or ""
+    return f"{cve_part}-Jfrog-{issue_part}".strip("-")
+
+
+def _violation_rule(row: Dict, cve_entry: Dict, category: str) -> Dict:
+    summary = str(row.get("summary", "")).strip()
+    issue_id = str(row.get("issue_id", "")).strip()
+    severity = str(row.get("severity", "")).strip()
+    severity_source = str(row.get("severity_source", "")).strip()
+    cve = str(cve_entry.get("cve", "")).strip() or "UNKNOWN-CVE"
+    cvss = (
+        cve_entry.get("cvss_v3_score")
+        or cve_entry.get("cvss_v2_score")
+        or row.get("cvss3_max_score")
+        or row.get("cvss2_max_score")
+    )
+    cvss_text = str(cvss) if cvss is not None else ""
+    rule_id = _violation_rule_id(cve, issue_id)
+
+    return {
+        "id": rule_id,
+        "name": rule_id,
+        "helpUri": "",
+        "help": {"text": summary, "markdown": summary},
+        "fullDescription": {"text": summary},
+        "x-metadata": {
+            "cves": cve,
+            "cvss": cvss_text,
+            "severity_source": severity_source,
+        },
+        "properties": {
+            "security-severity": severity,
+            "name": rule_id,
+            "id": rule_id,
+            "description": summary,
+            "tags": [category] if category else [],
+        },
+    }
+
+
+def _violation_result(row: Dict, cve_entry: Dict, category: str, impacted_artifact: str) -> Dict:
+    summary = str(row.get("summary", "")).strip()
+    severity = str(row.get("severity", "")).strip()
+    cve = str(cve_entry.get("cve", "")).strip() or "UNKNOWN-CVE"
+    issue_id = str(row.get("issue_id", "")).strip()
+    rule_id = _violation_rule_id(cve, issue_id)
+
+    impact_path = " | ".join(_string_list(row.get("impact_path")))
+    fixed_versions = ", ".join(_string_list(row.get("fixed_versions")))
+    package_type = str(row.get("package_type", "")).strip()
+    component_physical_path = str(row.get("component_physical_path", "")).strip()
+    file_path = str(row.get("path", "")).strip() or str(impacted_artifact).strip() or component_physical_path
+    severity_source = str(row.get("severity_source", "")).strip()
+    policy_names = ", ".join(_string_list(row.get("policy_names")))
+    references = ", ".join(_string_list(row.get("references")))
+    project_keys = ", ".join(_string_list(row.get("project_keys")))
+    path_value = str(row.get("path", "")).strip()
+    watch_name = str(row.get("watch_name", "")).strip()
+    watch_id = str(row.get("watch_id", "")).strip()
+    applicability_result = str(row.get("applicability_result", "")).strip()
+    license_name = str(row.get("license_name", "")).strip()
+    license_key = str(row.get("license_key", "")).strip()
+    vulnerable_component = str(row.get("vulnerable_component", "")).strip()
+    vulnerable_component_sha = str(row.get("vulnerable_component_sha", "")).strip()
+    status = str(row.get("status", "")).strip()
+    references_list = row.get("references")
+
+    return {
+        "ruleId": rule_id,
+        "level": _severity_to_level(severity),
+        "message": {"text": summary},
+        "locations": [
+            {
+                "physicalLocation": {
+                    "artifactLocation": {"uri": impact_path},
+                    "region": {
+                        "startLine": 1,
+                        "startColumn": 1,
+                        "endLine": 1,
+                        "endColumn": 1,
+                        "snippet": {"text": component_physical_path},
+                    },
+                }
+            }
+        ],
+        "x-metadata": {
+            "type": str(row.get("type", "")).strip(),
+            "vulnerable_component": vulnerable_component,
+            "vulnerable_component_sha": vulnerable_component_sha,
+            "impacted_artifact": impacted_artifact,
+            "fixed_versions": fixed_versions,
+            "package_type": package_type,
+            "impact_path": impact_path,
+            "policy_names": policy_names,
+            "references": references,
+            "status": status,
+            "license_name": license_name,
+            "license_key": license_key,
+            "project": project_keys,
+            "applicability_result": applicability_result,
+            "path": path_value,
+            "watch_name": watch_name,
+            "watch_id": watch_id,
+            "severity_source": severity_source,
+            "cve": cve,
+            "cvss": str(
+                cve_entry.get("cvss_v3_score")
+                or cve_entry.get("cvss_v2_score")
+                or row.get("cvss3_max_score")
+                or row.get("cvss2_max_score")
+                or ""
+            ),
+            "references_list": references_list,
+        },
+        "partialFingerprints": {
+            "commitSha": "",
+            "email": "",
+            "author": "",
+            "date": "",
+            "commitMessage": "",
+        },
+        "properties": {"tags": [category] if category else []},
+    }
+
+
+def _iter_violation_rows(rows: Sequence[Dict]) -> Iterable[Dict]:
+    """
+    Expand each violation by CVE and impacted artifact.
+    """
+    for row in rows:
+        cves = row.get("cves") or [{}]
+        artifacts = _string_list(row.get("impacted_artifact")) or [""]
+        for cve_entry in cves:
+            for artifact in artifacts:
+                yield {"row": row, "cve_entry": cve_entry, "impacted_artifact": artifact}
+
+
+def _build_violations_run(rows: Sequence[Dict], category: str, working_uri: str = "") -> Dict:
+    expanded = list(_iter_violation_rows(rows))
+
+    artifact_working_uri = next((entry["impacted_artifact"] for entry in expanded if entry["impacted_artifact"]), "")
+    if artifact_working_uri:
+        working_uri = artifact_working_uri
+    elif not working_uri:
+        working_uri = next((entry["row"].get("path") for entry in expanded if entry["row"].get("path")), "") or ""
+
+    rules = []
+    seen_rule_ids = set()
+    for entry in expanded:
+        rule = _violation_rule(entry["row"], entry["cve_entry"], category)
+        if rule["id"] in seen_rule_ids:
+            continue
+        seen_rule_ids.add(rule["id"])
+        rules.append(rule)
+
+    results = [
+        _violation_result(entry["row"], entry["cve_entry"], category, entry["impacted_artifact"])
+        for entry in expanded
+    ]
+
+    return {
+        "tool": {
+            "driver": {
+                "name": f"Jfrog-{category or 'violations'}",
+                "semanticVersion": "v8.0.0",
+                "informationUri": "https://www.jfrog.com/",
+                "rules": rules,
+            }
+        },
+        "results": results,
+        "invocations": [
+            {
+                "executionSuccessful": True,
+                "notificationConfigurationOverrides": [],
+                "ruleConfigurationOverrides": [],
+                "toolConfigurationNotifications": [],
+                "toolExecutionNotifications": [],
+                "workingDirectory": {
+                    "index": -1,
+                    "uri": working_uri,
+                },
+            }
+        ],
+    }
 
 
 def convert_file(
@@ -487,6 +680,26 @@ def convert_file(
 
         sarif_payload = {"$schema": SARIF_SCHEMA, "version": SARIF_VERSION, "runs": runs}
 
+        target = output_path or input_path.with_suffix("").with_name(f"{input_path.stem}.sarif.json")
+        target.write_text(json.dumps(sarif_payload, indent=2), encoding="utf-8")
+        return [target]
+
+    if report_type == "violations":
+        cat = category or "violations"
+        cat_rows = (
+            [row for row in rows if str(row.get("type", "")).lower() == str(category).lower()]
+            if category
+            else list(rows)
+        )
+        if not cat_rows:
+            return []
+
+        runs: List[Dict] = []
+        for path_key, rows_for_path in _rows_by_path(cat_rows).items():
+            run = _build_violations_run(rows_for_path, cat, working_uri=path_key)
+            runs.append(run)
+
+        sarif_payload = {"$schema": SARIF_SCHEMA, "version": SARIF_VERSION, "runs": runs}
         target = output_path or input_path.with_suffix("").with_name(f"{input_path.stem}.sarif.json")
         target.write_text(json.dumps(sarif_payload, indent=2), encoding="utf-8")
         return [target]

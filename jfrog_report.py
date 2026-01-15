@@ -270,7 +270,7 @@ def main(convert_to_sarif: bool = False, send_to_accuknox: bool = True) -> None:
         sarif_dir.mkdir(parents=True, exist_ok=True)
 
     report_types = [
-        # "violations",               # violations are policy violations it can be custom policies or built-in policies
+        "violations",               # violations are policy violations it can be custom policies or built-in policies
         "vulnerabilities",          # vulnerabilities
         "exposures",                # exposures can be - iac, applications, secrets etc.
         # "licenses",                 # sbom
