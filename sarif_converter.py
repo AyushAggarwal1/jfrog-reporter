@@ -197,7 +197,7 @@ def _build_exposures_run(rows: Sequence[Dict], category: str) -> Dict:
 
     first_repo = next((row.get("repository") for row in rows if row.get("repository")), "")
     first_artifact = next((row.get("impacted_artifact") for row in rows if row.get("impacted_artifact")), "")
-    working_uri = f"{first_repo}+{first_artifact}" if first_repo or first_artifact else ""
+    working_uri = f"{first_artifact}" if first_artifact else ""
 
     return {
         "tool": {
@@ -250,7 +250,6 @@ def _vuln_rule_id(cve: str, issue_id: str) -> str:
 def _vuln_rule(row: Dict, cve_entry: Dict, category: str) -> Dict:
     summary = str(row.get("summary", "")).strip()
     issue_id = str(row.get("issue_id", "")).strip()
-    project_keys = ", ".join(_string_list(row.get("project_keys")))
     cwe = str(cve_entry.get("cwe", "")).strip()
     cvss = cve_entry.get("cvss_v3_score") or cve_entry.get("cvss_v2_score") or row.get("cvss3_max_score")
     cvss_text = str(cvss) if cvss is not None else ""
@@ -264,7 +263,7 @@ def _vuln_rule(row: Dict, cve_entry: Dict, category: str) -> Dict:
         "helpUri": "",
         "help": {"text": summary, "markdown": summary},
         "fullDescription": {"text": summary},
-        "x-metadata": {"cwe": cwe, "cvss": cvss_text, "project": project_keys, "cve": cve},
+        "x-metadata": {"cwe": cwe, "cvss": cvss_text, "cve": cve},
         "properties": {
             "security-severity": severity,
             "name": rule_id,
@@ -286,12 +285,15 @@ def _vuln_result(row: Dict, cve_entry: Dict, category: str, impacted_artifact: s
     fixed_versions = ", ".join(_string_list(row.get("fixed_versions")))
     package_type = str(row.get("package_type", "")).strip()
     component_physical_path = str(row.get("component_physical_path", "")).strip()
-    file_path = str(row.get("path", "")).strip() or component_physical_path
+    file_path = str(row.get("impacted_artifact", "")).strip() or component_physical_path
     cve = cve_value
     cvss_v2_score = cve_entry.get("cvss_v2_score")
     cvss_v3_score = cve_entry.get("cvss_v3_score")
     cvss_v2_vector = cve_entry.get("cvss_v2_vector")
     cvss_v3_vector = cve_entry.get("cvss_v3_vector")
+    project_keys = ", ".join(_string_list(row.get("project_keys")))
+    path = str(row.get("path", "")).strip()
+
 
     return {
         "ruleId": rule_id,
@@ -321,6 +323,8 @@ def _vuln_result(row: Dict, cve_entry: Dict, category: str, impacted_artifact: s
             "impact_path": impact_path,
             "fixed_versions": fixed_versions,
             "package_type": package_type,
+            "project_keys": project_keys,
+            "path": path,
         },
         "partialFingerprints": {
             "commitSha": "",
@@ -347,6 +351,13 @@ def _iter_vulnerability_rows(rows: Sequence[Dict]) -> Iterable[Dict]:
 
 def _build_vulnerabilities_run(rows: Sequence[Dict], category: str, working_uri: str = "") -> Dict:
     expanded = list(_iter_vulnerability_rows(rows))
+
+    # Prefer impacted artifact for working directory; fall back to provided value or path.
+    artifact_working_uri = next(
+        (entry["impacted_artifact"] for entry in expanded if entry["impacted_artifact"]), ""
+    )
+    if artifact_working_uri:
+        working_uri = artifact_working_uri
 
     rules = []
     seen_rule_ids = set()
