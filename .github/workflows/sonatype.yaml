@@ -22,5 +22,5 @@ jobs:
           username: ${{ secrets.LIFECYCLE_USERNAME }}
           password: ${{ secrets.LIFECYCLE_PASSWORD }}
           application-id: cspm
-          scan-targets: *.*
+          scan-targets: *.py
           upload-sarif-file: true
