@@ -1,0 +1,26 @@
+name: Workflow for GitHub Advanced Security
+on:
+  schedule:
+    - cron: '0 0 * * *' # Daily at 00:00 UTC
+  workflow_dispatch:
+jobs:
+  sonatype-cli:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      # Perform an evaluation
+      - name: Run evaluate  action
+        id: evaluate
+        uses: sonatype/actions/evaluate@v1
+        with:
+          iq-server-url: https://accuknox.iq.sonatype.app/
+          username: ${{ secrets.LIFECYCLE_USERNAME }}
+          password: ${{ secrets.LIFECYCLE_PASSWORD }}
+          application-id: cspm
+          scan-targets: *.*
+          upload-sarif-file: true
