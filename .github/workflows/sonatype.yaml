@@ -1,4 +1,4 @@
-name: Workflow for GitHub Advanced Security
+name: Sonatype Code Scanning
 on:
   schedule:
     - cron: '0 0 * * *' # Daily at 00:00 UTC
