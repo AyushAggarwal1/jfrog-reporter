@@ -27,7 +27,7 @@ kubectl create secret generic jfrog-reporter-secret \
   --from-literal=JFROG_REPO="poc-docker-local" \
   --from-literal=CSPM_BASE_URL="https://cspm.dev.accuknox.com" \
   --from-literal=LABEL="github" \
-  --from-literal=ARTIFACT_TOKEN="ey....""
+  --from-literal=ARTIFACT_TOKEN="ey...."
 ```
 
 2. Verify Secret
