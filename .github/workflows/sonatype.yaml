@@ -21,6 +21,6 @@ jobs:
           iq-server-url: https://accuknox.iq.sonatype.app/
           username: ${{ secrets.LIFECYCLE_USERNAME }}
           password: ${{ secrets.LIFECYCLE_PASSWORD }}
-          application-id: github
+          application-id: sandbox
           scan-targets: requirements.txt
           upload-sarif-file: true
